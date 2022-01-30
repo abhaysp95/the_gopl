@@ -18,7 +18,7 @@ func test() {
   }
 }
 
-func main() {
+func loopTest() {
   str := []string{"this"}
   count := 0
   for len(str) > 0 {
@@ -30,3 +30,40 @@ func main() {
   }
   fmt.Printf("count: %d\n", count)
 }
+
+func scopeTestRangeForInvalid() {
+  var lc []func()
+  arr := []int{1, 2, 3, 4, 5}
+  for _, v := range arr {
+    fmt.Println("before:", v)
+    lc = append(lc, func() {
+      fmt.Println("after:", v)
+    })
+  }
+
+  for _, c := range lc {
+    c()
+  }
+}
+
+func scopeTestRangeForValid() {
+  var lc []func()
+  arr := []int{1, 2, 3, 4, 5, 6}
+  for _, v := range arr {
+    i := v
+    fmt.Println("before:", i)
+    lc = append(lc, func() {
+      fmt.Println("after:", i)
+    })
+  }
+
+  for _, c := range lc {
+    c()
+  }
+}
+
+func main() {
+  scopeTestRangeForInvalid()
+}
+
+/** same can be said for other types of for loop, Range based for loop is just an example */
