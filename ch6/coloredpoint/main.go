@@ -27,6 +27,11 @@ func main() {
   fmt.Println(p.Distance(q.Point))
 }
 
+func (p *Point) Diff(q Point) {
+  p.X -= q.X
+  p.Y -= q.Y
+}
+
 func (p Point) Distance(q Point) float64 {
   return math.Hypot(p.X-q.X, p.Y-q.Y)
 }
