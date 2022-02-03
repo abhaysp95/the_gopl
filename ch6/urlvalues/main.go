@@ -19,6 +19,13 @@ func (v Values) Add(key, value string) {
   v[key] = append(v[key], value)
 }
 
+func (v Values) Exist(key string) bool {
+  if _, ok := v[key]; !ok {
+    return false
+  }
+  return true
+}
+
 func main() {
   m := Values{"lang": {"en"}}
   m.Add("item", "1")
