@@ -19,6 +19,7 @@ func (v Values) Add(key, value string) {
   v[key] = append(v[key], value)
 }
 
+// This function is just for some testing
 func (v Values) Exist(key string) bool {
   if _, ok := v[key]; !ok {
     return false
