@@ -11,7 +11,7 @@ var cache = struct {
   mapping: make(map[string]string),
 }
 
-// safe key lookup (good practice)
+// safe key lookup
 func Lookup(key string) string {
   cache.Lock()
   v := cache.mapping[key]
