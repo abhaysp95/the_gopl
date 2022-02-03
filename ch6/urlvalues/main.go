@@ -27,6 +27,10 @@ func (v Values) Exist(key string) bool {
   return true
 }
 
+func (v Values) Count(key string) int {
+  return len(v[key])
+}
+
 func main() {
   m := Values{"lang": {"en"}}
   m.Add("item", "1")
