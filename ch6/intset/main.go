@@ -64,38 +64,16 @@ func main() {
   x.Add(1)
   x.Add(144)
   x.Add(9)
+  // fmt.Println(x)  // IntSet value doesn't have string method
   fmt.Println(&x)  // will call x.String(), more detail will be told in ch7
 
   var y IntSet
   y.Add(9)
   y.Add(42)
-  fmt.Println(y.String())  // for testing
+  fmt.Println((&y).String())  // for testing
 
   x.UnionWith(&y)
   fmt.Println(x.String())
 
   fmt.Println(x.Has(9), x.Has(123))
 }
-
-
-/** run1:
-2
-
-2
-0
-65536
-
-514
-0
-65536
-
-{1 9 144}
-512
-
-4398046511616
-
-{9 42}
-{1 9 42 144}
-true false
-------------------------------------------
-*/
