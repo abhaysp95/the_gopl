@@ -64,7 +64,7 @@ func main() {
   x.Add(1)
   x.Add(144)
   x.Add(9)
-  // fmt.Println(x)  // IntSet value doesn't have string method
+  // fmt.Println(x)  // IntSet value doesn't have string method (only *IntSet satisfies fmt.Stringer interface, Chap7)
   fmt.Println(&x)  // will call x.String(), more detail will be told in ch7
 
   var y IntSet
