@@ -24,3 +24,12 @@ func (f *celciusFlag) Set(s string) error {
   }
   return fmt.Errorf("invalid temperature %q", s)
 }
+
+// CelciusFlag defines a Celsius flag with the specified name,
+// default value, and usage, and returns the address of the flag variable.
+// The flag argument must have a quantity and unit, e.g., "100C"
+func CelciusFlag(name string, value tempconv.Celsius, usage string) *tempconv.Celsius {
+  f := celciusFlag{value}
+  flag.CommandLine.Var(&f, name, usage)
+  return &f.Celsius
+}
