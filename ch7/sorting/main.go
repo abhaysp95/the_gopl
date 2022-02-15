@@ -103,4 +103,7 @@ func init() {
   sort.Sort(sort.Reverse(sort.IntSlice(values)))
   fmt.Println(values)
   fmt.Println(sort.IntsAreSorted(values))
+
+  // use func "sort.IsSorted(data Interface) bool" for checking if thing is
+  // sorted or not
 }
