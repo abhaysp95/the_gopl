@@ -38,6 +38,7 @@ func printTracks(tracks []*Track) {
   tw.Flush()
 }
 
+// to sort by artist
 type byArtist []*Track
 
 func (p byArtist) Len() int { return len(p) }
