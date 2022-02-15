@@ -9,6 +9,9 @@ import (
 // *celciusFlag statisfies Flag.Value interface
 type celciusFlag struct { tempconv.Celsius }
 
+// makes the flag behave for boolean flag (check "go doc flag Value")
+func (f *celciusFlag) IsBoolFlag() bool { return true }
+
 func (f *celciusFlag) Set(s string) error {
   var unit string
   var value float64
