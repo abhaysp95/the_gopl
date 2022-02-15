@@ -28,6 +28,7 @@ func length(s string) time.Duration {
 // print in Tabular form
 func printTracks(tracks []*Track) {
   const format = "%v\t%v\t%v\t%v\t%v\t\n"
+  // you can update flag (last arg of Init), like AlignRight | Debug
   tw := new(tabwriter.Writer).Init(os.Stdout, 0, 8, 2, ' ', 0)
   fmt.Fprintf(tw, format, "Title", "Artist", "Album", "Year", "Length")
   fmt.Fprintf(tw, format, "-----", "------", "-----", "----", "------")
