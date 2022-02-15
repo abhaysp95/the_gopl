@@ -57,6 +57,15 @@ func (p byYear) Len() int { return len(p) }
 func (p byYear) Less(i, j int) bool { return p[i].Year < p[j].Year }
 func (p byYear) Swap(i, j int) { p[i], p[j] = p[j], p[i] }
 
+type customSort struct {
+  tracks []*Track
+  less func(x, y *Track) bool
+}
+
+func (p customSort) Len() int { return len(p.tracks) }
+func (p customSort) Less(i, j int) bool { return p.less(p.tracks[i], p.tracks[j]) }
+func (p customSort) Swap(i, j int) { p.tracks[i], p.tracks[j] = p.tracks[j], p.tracks[i] }
+
 func main() {
   fmt.Println("By Aritst:")
   sort.Sort(byArtist(tracks))
@@ -69,4 +78,18 @@ func main() {
   fmt.Println("By Year:")
   sort.Sort(byYear(tracks))
   printTracks(tracks)
+
+  // primary sort key is Title, secondary key is Year and tertiary is the running time length
+  sort.Sort(customSort{tracks, func(x, y *Track) bool {
+    if x.Title != y.Title {
+      return x.Title < y.Title
+    }
+    if x.Year != y.Year {
+      return x.Year < y.Year
+    }
+    if x.Length != y.Length {
+      return x.Length < y.Length
+    }
+    return false
+  }})
 }
