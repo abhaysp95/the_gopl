@@ -94,3 +94,13 @@ func main() {
   }})
   printTracks(tracks)
 }
+
+func init() {
+  values := []int{3, 1, 4, 1}
+  fmt.Println(sort.IntsAreSorted(values))
+  sort.Ints(values)
+  fmt.Println(sort.IntsAreSorted(values))
+  sort.Sort(sort.Reverse(sort.IntSlice(values)))
+  fmt.Println(values)
+  fmt.Println(sort.IntsAreSorted(values))
+}
