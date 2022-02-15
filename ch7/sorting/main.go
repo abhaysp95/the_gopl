@@ -1,6 +1,12 @@
 package main
 
-import "time"
+import (
+	"fmt"
+	"os"
+	"sort"
+	"text/tabwriter"
+	"time"
+)
 
 type Track struct {
   Title string
@@ -50,6 +56,7 @@ type byYear []*Track
 func (p byYear) Len() int { return len(p) }
 func (p byYear) Less(i, j int) bool { return p[i].Year < p[j].Year }
 func (p byYear) Swap(i, j int) { p[i], p[j] = p[j], p[i] }
+
 func main() {
   fmt.Println("By Aritst:")
   sort.Sort(byArtist(tracks))
