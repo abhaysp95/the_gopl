@@ -37,3 +37,9 @@ func printTracks(tracks []*Track) {
   }
   tw.Flush()
 }
+
+type byArtist []*Track
+
+func (p byArtist) Len() int { return len(p) }
+func (p byArtist) Sort(i, j int) bool { return p[i].Artist < p[j].Artist }
+func (p byArtist) Swap(i, j int) { p[i], p[j] = p[j], p[i] }
