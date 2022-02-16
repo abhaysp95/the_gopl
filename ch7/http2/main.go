@@ -1,8 +1,9 @@
 package main
 
 import (
-  "fmt"
-  "net/http"
+	"fmt"
+	"net/http"
+	"net/url"
 )
 
 type dollars float32
