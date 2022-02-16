@@ -23,14 +23,19 @@ func (db database) ServeHTTP(w http.ResponseWriter, req *http.Request) {
     // fmt.Println(url.ParseQuery(req.URL.Query().Encode()))
     price, ok := db[item]
     if !ok {
-      w.WriteHeader(http.StatusNotFound)
+      w.WriteHeader(http.StatusNotFound)  // should be done before writing any message
       fmt.Fprintf(w, "no such item: %q\n", item)
       return
     }
     fmt.Fprintf(w, "%s: %s\n", item, price)
   default:
-    w.WriteHeader(http.StatusNotFound)  // 404
-    fmt.Fprintf(w, "no such page: %s\n", req.URL)
+    /* w.WriteHeader(http.StatusNotFound)  // 404
+    fmt.Fprintf(w, "no such page: %s\n", req.URL) */
+
+    // http.ResponseWriter is another interface. It augemnts io.Writer with
+    // methods for sending HTTP response headers. Equivantely, we could use:
+    msg := fmt.Sprintf("no such page: %s\n", req.URL)
+    http.Error(w, msg, http.StatusNotFound)
   }
 }
 
