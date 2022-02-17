@@ -29,7 +29,7 @@ func (u unary) Eval(env Env) float64 {
 func (b binary) Eval(env Env) float64 {
   switch b.op {
   case '+':
-    return b.x.Eval(env) + b.y.Eval(env)
+    return b.x.Eval(env) + b.y.Eval(env)  // b is an Expr (because) and b.x and b.y are Expr
   case '-':
     return b.x.Eval(env) - b.y.Eval(env)
   case '*':
