@@ -3,6 +3,7 @@ package eval
 import (
 	"fmt"
 	"math"
+	"strings"
 )
 
 // map variable names to values
@@ -50,4 +51,28 @@ func (c call) Eval(env Env) float64 {
     return math.Sqrt(c.args[0].Eval(env))
   }
   panic(fmt.Sprintf("unsupported function call: %q", c.fn))
+}
+
+func (v Var) Check(vars map[Var]bool) error {
+  vars[v] = true
+  return nil
+}
+
+func (l literal) Check(vars map[Var]bool) error { return nil }
+
+func (u unary) Check(vars map[Var]bool) error {
+  if !strings.ContainsRune("+-", u.op) {
+    return fmt.Errorf("unexpected unary op: %q", u.op)
+  }
+  return u.x.Check(vars)
+}
+
+func (b binary) Check(vars map[Var]bool) error {
+  if !strings.ContainsRune("+-*/", b.op) {
+    return fmt.Errorf("unexpected binary op: %q", b.op)
+  }
+  if err := b.x.Check(vars); err != nil {
+    return err
+  }
+  return b.y.Check(vars)
 }

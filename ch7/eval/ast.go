@@ -4,6 +4,8 @@ package eval
 type Expr interface{
   // Eval returns the value of this Expr in the given env
   Eval(env Env) float64
+  // Check reports error in this Expr and adds its vars to the set
+  Check(vars map[Var]bool) error
 }
 
 // A var identifies a variable eg., x
