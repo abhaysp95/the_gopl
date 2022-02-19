@@ -76,3 +76,25 @@ func (b binary) Check(vars map[Var]bool) error {
   }
   return b.y.Check(vars)
 }
+
+var numParams = map[string]int{
+  "pow": 2,
+  "sin": 1,
+  "sqrt": 1,
+}
+
+func (c call) Check(vars map[Var]bool) error {
+  arity, ok := numParams[c.fn]
+  if !ok {
+    return fmt.Errorf("unkwown function: %q", c.fn)
+  }
+  if len(c.args) != arity {
+    return fmt.Errorf("call to %s had args %d, want %d", c.fn, len(c.args), arity)
+  }
+  for _, arg := range c.args {
+    if err := arg.Check(vars); err != nil {
+      return err
+    }
+  }
+  return nil
+}
