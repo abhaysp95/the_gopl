@@ -25,6 +25,8 @@ func main() {
 func handleConn(c net.Conn) {
   defer c.Close()
   for {
+    // if first argument satisfies StringWriter interface, its WriteString
+    // method is called, else Write is called exactly one
     _, err := io.WriteString(c, time.Now().Format("15:04:05\n"))
     if err != nil {
       return  // e.g., client disconnected
