@@ -25,3 +25,11 @@ func mustCopy(dest io.Writer, src io.Reader) {
 	}
 	fmt.Println("End:", src)
 }
+
+
+// From godoc net Conn
+/* Conn is a generic stream-oriented network connection.
+Multiple goroutines may invoke methods on a Conn simultaneously.   */
+
+/* In both threads io.Copy() haven't finished execution and are still working,
+* how ? I don't understand right now */
