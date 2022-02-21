@@ -21,6 +21,7 @@ func main() {
 			continue
 		}
 		handleConn(conn)
+		// go handleConn(conn)  // handle multpile connection (not done in book)
 	}
 }
 
