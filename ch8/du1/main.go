@@ -23,6 +23,7 @@ func walkDir(dir string, fileSizes chan<- int64, level int) {
 			if err != nil {
 				// log.Fatalf("du1: %v\n", err)
 				fmt.Fprintf(os.Stderr, "du1: %v\n", err)
+				return
 			}
 			fileSizes <- info.Size()
 		}
