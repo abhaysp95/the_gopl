@@ -12,15 +12,14 @@ var (
 
 func Deposit(amount int) {
 	mu.Lock()
-	balance += amount
-	mu.Unlock()
+	defer mu.Unlock()
+	balance += amount  // critical section (portion between mutex lock and unlock)
 }
 
 func Balance() int {
 	mu.Lock()
-	b := balance
-	mu.Unlock()
-	return b
+	defer mu.Unlock()
+	return balance
 }
 
 func main() {
